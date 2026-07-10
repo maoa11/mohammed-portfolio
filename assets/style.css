@@ -808,9 +808,28 @@ body {
 @media (max-width: 640px) {
 
   /* الهيرو: فيديو العميل ثلاث لقطات جنب بعض — على الشاشة العمودية
-     نعرضه كاملًا بدل قصّه على اللقطة الوسطى فقط */
+     نعرضه كاملًا بدل قصّه على اللقطة الوسطى فقط،
+     وارتفاع الهيرو على قدر الفيديو بالضبط (لا فراغ أسود حوله) */
   .screen__video { object-fit: contain; }
-  .screen { background-size: contain; }
+  .screen {
+    background-size: contain;
+    flex: 0 0 auto;
+    height: calc(100vw * 1728 / 2966); /* نفس نسبة فيديو الغلاف */
+  }
+  .frame { height: auto; min-height: 0; }
+
+  /* تقريب المسافات: الأقسام على قدر محتواها بدل ملء شاشة كاملة */
+  .clients { padding-top: clamp(48px, 8vh, 64px); }
+  .works {
+    padding-top: clamp(48px, 8vh, 64px);
+    padding-bottom: clamp(28px, 5vh, 44px);
+  }
+  .photos,
+  .prod {
+    min-height: 0;
+    justify-content: flex-start;
+    padding-block: clamp(48px, 8vh, 64px) clamp(36px, 6vh, 52px);
+  }
 
   /* شريط اللقطات: بطاقات أصغر تناسب الجوال */
   .strip { --card-h: clamp(280px, 46vh, 400px); }
@@ -818,8 +837,8 @@ body {
   /* شريط أغلفة الإنتاجات: أصغر حتى يظهر أكثر من غلاف */
   .pstrip { --card-h: clamp(280px, 42vh, 380px); }
 
-  /* كاروسيل الريلز: مساحة أقصر تناسب البطاقات المصغّرة */
-  .works .stage { height: clamp(300px, 44vh, 380px); }
+  /* كاروسيل الريلز: مساحة على قدر البطاقات المصغّرة */
+  .works .stage { height: clamp(280px, 40vh, 340px); }
 }
 
 /* ---------- تقليل الحركة ---------- */
