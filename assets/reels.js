@@ -54,7 +54,10 @@
     var stageH = stage.getBoundingClientRect().height;
     var vw = window.innerWidth;
     var byHeight = (stageH * 0.86) * 9 / 16;
-    cardW = Math.max(160, Math.min(byHeight, vw * 0.62, 330));
+    // على الجوال بطاقات أصغر حتى يظهر القوس المتداخل كاملًا (طلب العميل)
+    var widthFactor = vw <= 640 ? 0.42 : 0.62;
+    var minW = vw <= 640 ? 120 : 160;
+    cardW = Math.max(minW, Math.min(byHeight, vw * widthFactor, 330));
     stage.style.setProperty("--card-w", cardW + "px");
     render();
   }

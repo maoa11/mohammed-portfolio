@@ -43,7 +43,11 @@
   var loopW = 0;
   var paused = false;
   var visible = true;
-  var SPEED = 42; // بكسل/ثانية — انزلاق هادئ يليق بمعرض صور
+
+  // على الجوال أسرع (كان بطيئًا ولا يوصل لآخر صورة إلا بعد مدة — طلب العميل)
+  function currentSpeed() {
+    return window.innerWidth <= 640 ? 90 : 42; // بكسل/ثانية
+  }
 
   // مقاس المربّع عند المرور = الارتفاع الفعلي للبطاقة (بالبكسل)
   function applySquare(card) {
@@ -81,7 +85,7 @@
     var dt = Math.min((now - last) / 1000, 0.05);
     last = now;
     if (!paused && visible && loopW) {
-      offset -= SPEED * dt;
+      offset -= currentSpeed() * dt;
       if (-offset >= loopW) offset += loopW; // لف سلس
       track.style.transform = "translateX(" + offset + "px)";
     }
