@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>مارشميلو — M7MD BEDEIRY</title>
+  <meta name="description" content="مارشميلو — فيلم قصير جريمة وأكشن · إخراج M7MD BEDEIRY.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23050505'/%3E%3Ctext x='32' y='42' font-family='Arial Black, Arial' font-size='26' font-weight='900' fill='%23FAFAFA' text-anchor='middle'%3EM7%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+  <div class="proddetail">
+
+    <!-- خلفية فيديو تملأ الصفحة -->
+    <video class="proddetail__bg" src="فيديو عرض/5/web/video.mp4" poster="فيديو عرض/5/web/video-poster.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+    <div class="proddetail__scrim" aria-hidden="true"></div>
+
+    <!-- شريط علوي: رجوع + اسم المشروع -->
+    <header class="proddetail__bar">
+      <a class="proddetail__back" href="index.html#prod" aria-label="رجوع للرئيسية">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>رجوع</span>
+      </a>
+      <p class="proddetail__meta"><span class="proddetail__name">مارشميلو</span><span class="proddetail__sub">SHORT FILM · 2019</span></p>
+    </header>
+
+    <!-- معلومات المشروع -->
+    <article class="pinfo">
+      <img class="pinfo__poster" src="فيديو عرض/5/web/cover.webp" alt="بوستر فيلم مارشميلو" decoding="async">
+      <div class="pinfo__text">
+        <h1 class="pinfo__title">مارشميلو</h1>
+        <p class="pinfo__genre">Crime · Action</p>
+        <p class="pinfo__metaline">Short Film • 2019 • 24 Minutes</p>
+
+        <h2 class="pinfo__h">Overview</h2>
+        <p class="pinfo__p">A crime-action short film built around suspense, pacing, and cinematic storytelling, delivering an intense visual experience from beginning to end.</p>
+
+        <h2 class="pinfo__h">Highlights</h2>
+        <ul class="pinfo__list">
+          <li>Winner — Best Film, King Abdulaziz University Film Festival (1st Edition).</li>
+          <li>Official Selection — Saudi Film Festival (5th Edition).</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- الصور العرضية الثلاث -->
+    <div class="stills">
+      <img class="still" src="فيديو عرض/5/web/still-1.webp" alt="لقطة من فيلم مارشميلو" decoding="async">
+      <img class="still" src="فيديو عرض/5/web/still-2.webp" alt="لقطة من فيلم مارشميلو" decoding="async">
+      <img class="still" src="فيديو عرض/5/web/still-3.webp" alt="لقطة من فيلم مارشميلو" decoding="async">
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      var v = document.querySelector(".proddetail__bg");
+      if (!v) return;
+      function play() { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+      play();
+      document.addEventListener("visibilitychange", function () { if (!document.hidden && v.paused) play(); });
+      ["touchstart", "click"].forEach(function (e) {
+        document.addEventListener(e, function once() { if (v.paused) play(); document.removeEventListener(e, once); }, { passive: true });
+      });
+    })();
+  </script>
+</body>
+</html>
