@@ -73,6 +73,46 @@
     if (e.target.closest(".pcard")) paused = false;
   });
 
+  // سحب بالإصبع على الجوال فقط: يقدر يرجع يشوف صورة فاتته أثناء الحركة التلقائية
+  function isMobile() { return window.innerWidth <= 640; }
+
+  var dragging = false;
+  var dragStartX = 0;
+  var dragStartOffset = 0;
+  var dragPointerId = null;
+
+  function wrapOffset() {
+    if (!loopW) return;
+    while (-offset >= loopW) offset += loopW;
+    while (offset > 0) offset -= loopW;
+  }
+
+  strip.addEventListener("pointerdown", function (e) {
+    if (!isMobile() || e.pointerType !== "touch") return;
+    dragging = true;
+    paused = true;
+    dragStartX = e.clientX;
+    dragStartOffset = offset;
+    dragPointerId = e.pointerId;
+    strip.setPointerCapture(dragPointerId);
+  });
+
+  strip.addEventListener("pointermove", function (e) {
+    if (!dragging || e.pointerId !== dragPointerId) return;
+    offset = dragStartOffset + (e.clientX - dragStartX);
+    wrapOffset();
+    track.style.transform = "translateX(" + offset + "px)";
+  });
+
+  function endDrag(e) {
+    if (!dragging || e.pointerId !== dragPointerId) return;
+    dragging = false;
+    paused = false;
+    dragPointerId = null;
+  }
+  strip.addEventListener("pointerup", endDrag);
+  strip.addEventListener("pointercancel", endDrag);
+
   // لا نحرّك إلا حين يكون القسم ظاهرًا (توفير للأداء)
   if ("IntersectionObserver" in window) {
     new IntersectionObserver(function (entries) {
